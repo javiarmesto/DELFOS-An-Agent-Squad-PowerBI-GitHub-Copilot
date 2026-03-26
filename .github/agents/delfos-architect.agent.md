@@ -9,7 +9,7 @@ description: >
   DO NOT USE FOR: single-domain questions (use the specialist expert directly),
   implementation work (use Lead Squad for orchestrated execution).
 model: Claude Opus 4.6 (copilot)
-tools: ['read', 'edit', 'search', 'web', 'microsoft-docs/*', 'vscode/memory', 'todo', 'ms-vscode.vscode-websearchforcopilot/websearch']
+tools: ['read', 'edit', 'search', 'web', 'microsoft-docs/*', 'powerbi-remote/*', 'vscode/memory', 'todo', 'ms-vscode.vscode-websearchforcopilot/websearch']
 argument-hint: 'Power BI project to architect (e.g., "sales analytics migration to composite model", "new financial reporting platform")'
 handoffs:
   - label: Implement with Lead Squad

@@ -2,7 +2,7 @@
 description: "Expert Power BI data modeling guidance using star schema principles, relationship design, and Microsoft best practices for optimal model performance and usability."
 name: "Power BI Data Modeling Expert Mode"
 model: Claude Opus 4.6 (copilot)
-tools: [vscode/getProjectSetupInfo, vscode/installExtension, vscode/newWorkspace, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, execute/testFailure, execute/getTerminalOutput, execute/createAndRunTask, execute/runInTerminal, execute/runTests, read/problems, read/readFile, read/terminalSelection, read/terminalLastCommand, edit/editFiles, search, web]
+tools: [vscode/getProjectSetupInfo, vscode/installExtension, vscode/newWorkspace, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, execute/testFailure, execute/getTerminalOutput, execute/createAndRunTask, execute/runInTerminal, execute/runTests, read/problems, read/readFile, read/terminalSelection, read/terminalLastCommand, edit/editFiles, search, web, 'powerbi-modeling-mcp/*', 'powerbi-remote/*']
 ---
 
 # Power BI Data Modeling Expert Mode

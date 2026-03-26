@@ -10,7 +10,7 @@ description: >
   any request that spans multiple Delfos experts.
   DO NOT USE FOR: single-domain questions — delegate directly to the specialist expert.
 model: Claude Opus 4.6 (copilot)
-tools: [vscode/memory, execute, read, agent, edit, search, web, 'powerbi-modeling-mcp/*', 'github/*', 'github/*', 'markitdown/*', 'microsoft-docs/*', 'playwright/*', browser, todo]
+tools: [vscode/memory, execute, read, agent, edit, search, web, 'powerbi-modeling-mcp/*', 'powerbi-remote/*', 'github/*', 'github/*', 'markitdown/*', 'microsoft-docs/*', 'playwright/*', browser, todo]
 agents: ['delfos-architect', 'power-bi-data-modeling-expert', 'power-bi-dax-expert', 'power-bi-performance-expert', 'power-bi-visualization-expert']
 argument-hint: 'Power BI project or initiative to orchestrate (e.g., "redesign sales analytics model for DirectQuery", "migrate legacy reports to star schema")'
 handoffs:

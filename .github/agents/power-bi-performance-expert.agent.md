@@ -2,7 +2,7 @@
 description: "Expert Power BI performance optimization guidance for troubleshooting, monitoring, and improving the performance of Power BI models, reports, and queries."
 name: "Power BI Performance Expert Mode"
 model: Claude Opus 4.6 (copilot)
-tools: [vscode/getProjectSetupInfo, vscode/installExtension, vscode/newWorkspace, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, execute/testFailure, execute/getTerminalOutput, execute/createAndRunTask, execute/runInTerminal, execute/runTests, read/problems, read/readFile, read/terminalSelection, read/terminalLastCommand, edit/editFiles, search, web]
+tools: [vscode/getProjectSetupInfo, vscode/installExtension, vscode/newWorkspace, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, execute/testFailure, execute/getTerminalOutput, execute/createAndRunTask, execute/runInTerminal, execute/runTests, read/problems, read/readFile, read/terminalSelection, read/terminalLastCommand, edit/editFiles, search, web, 'powerbi-modeling-mcp/*', 'powerbi-remote/*']
 ---
 
 # Power BI Performance Expert Mode
