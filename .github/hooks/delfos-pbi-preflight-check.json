@@ -1,0 +1,13 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "windows": "powershell -NoProfile -ExecutionPolicy Bypass -File .github/hooks/scripts/delfos-check-pbi-tmdl.ps1",
+        "linux": "pwsh -NoProfile -File .github/hooks/scripts/delfos-check-pbi-tmdl.ps1",
+        "osx": "pwsh -NoProfile -File .github/hooks/scripts/delfos-check-pbi-tmdl.ps1",
+        "timeout": 10
+      }
+    ]
+  }
+}
