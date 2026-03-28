@@ -1,6 +1,6 @@
 ---
 name: 'markdown-to-word'
-description: 'Convert Markdown files to Word (.docx) documents using pandoc. Use when asked to "convert markdown to word", "export md to docx", "generate word document from markdown", "create docx from md", "formato VS Sistemas", "documento para cliente", "generar word", or when working with .md files that need professional Word document output. Supports custom templates (including VS Sistemas branded template), table of contents, metadata, cover pages, styles, headers/footers, page breaks, images, and batch conversions. Always use the VS Sistemas template (templates/vs-sistemas.docx) unless another template is explicitly requested.'
+description: 'Convert Markdown files to Word (.docx) documents using pandoc. Use when asked to "convert markdown to word", "export md to docx", "generate word document from markdown", "create docx from md", "formato Delfos", "documento para cliente", "generar word", or when working with .md files that need professional Word document output. Supports custom templates (including Delfos dark branded template), table of contents, metadata, cover pages, styles, headers/footers, page breaks, images, and batch conversions. Always use the Delfos template (templates/delfos-dark-template.docx) unless another template is explicitly requested.'
 ---
 
 # Markdown to Word (.docx) Conversion
@@ -14,18 +14,17 @@ Expert skill for converting Markdown documents to professional Microsoft Word (.
 - User needs professional-looking `.docx` output with custom styles
 - User wants batch conversion of multiple markdown files
 - User needs a Word document with TOC, cover page, headers/footers
-- User asks for "formato VS Sistemas" or "documento para cliente"
+- User asks for "formato Delfos" or "documento para cliente"
 - User is preparing documentation deliverables in Word format
 
 ## Available Templates
 
-### VS Sistemas (default): `templates/vs-sistemas.docx`
+### Delfos Dark (default): `templates/delfos-dark-template.docx`
 
-Branded template with VS Sistemas corporate identity:
-- **Logo** in header (right-aligned, transparent PNG)
+Branded template with Delfos dark corporate identity:
 - **Colors**: Headings in orange #FE5000, body in black, footer in gray #808080
 - **Font**: Calibri throughout (body 11pt, H1 20pt, H2 16pt, H3 14pt)
-- **Footer**: "VS Sistemas Solutions SL" + page number + copyright
+- **Footer**: Page number + copyright
 - **Tables**: Orange #F74F02 header row with white text
 - **Blockquotes**: Orange left border, italic gray text
 - **Code**: Consolas 9pt on light gray background
@@ -35,15 +34,15 @@ Branded template with VS Sistemas corporate identity:
 ### Quick Usage
 
 ```bash
-# Default: VS Sistemas template
-pandoc input.md -s --reference-doc=.github/skills/markdown-to-word/templates/vs-sistemas.docx -o output.docx
+# Default: Delfos template
+pandoc input.md -s --reference-doc=.github/skills/markdown-to-word/templates/delfos-dark-template.docx -o output.docx
 
 # With TOC
-pandoc input.md -s --reference-doc=.github/skills/markdown-to-word/templates/vs-sistemas.docx --toc --toc-depth=3 -o output.docx
+pandoc input.md -s --reference-doc=.github/skills/markdown-to-word/templates/delfos-dark-template.docx --toc --toc-depth=3 -o output.docx
 
 # Full professional document
 pandoc input.md -s \
-  --reference-doc=.github/skills/markdown-to-word/templates/vs-sistemas.docx \
+  --reference-doc=.github/skills/markdown-to-word/templates/delfos-dark-template.docx \
   --toc --toc-depth=3 --number-sections \
   --metadata lang="es-ES" \
   --dpi=300 \
@@ -58,12 +57,12 @@ Add this to the top of any `.md` file — pandoc reads the `reference-doc` path 
 ---
 title: "Mejoras para Pedidos de Marketplaces"
 subtitle: "Alcance de la Solución"
-author: "VS Sistemas"
+author: "Delfos"
 date: "2026-03-12"
 lang: es-ES
 toc: true
 toc-depth: 3
-reference-doc: .github/skills/markdown-to-word/templates/vs-sistemas.docx
+reference-doc: .github/skills/markdown-to-word/templates/delfos-dark-template.docx
 ---
 ```
 
@@ -75,7 +74,7 @@ pandoc input.md -s -o output.docx
 
 ### Cover Page Limitation
 
-Pandoc `--reference-doc` does NOT support cover pages. The VS Sistemas template provides header/footer/styles but no cover. For documents requiring a cover page:
+Pandoc `--reference-doc` does NOT support cover pages. The Delfos template provides header/footer/styles but no cover. For documents requiring a cover page:
 
 1. Generate with pandoc as normal
 2. Open in Word and add cover page manually, OR
@@ -117,8 +116,8 @@ pandoc input.md -s --metadata title="My Document" --metadata author="Author" -o 
 ### Using a Reference Template
 
 ```bash
-# VS Sistemas template (default for this project)
-pandoc input.md -s --reference-doc=.github/skills/markdown-to-word/templates/vs-sistemas.docx -o output.docx
+# Delfos template (default for this project)
+pandoc input.md -s --reference-doc=.github/skills/markdown-to-word/templates/delfos-dark-template.docx -o output.docx
 
 # Any custom template
 pandoc input.md -s --reference-doc=template.docx -o output.docx
@@ -136,7 +135,7 @@ pandoc -o custom-reference.docx --print-default-data-file reference.docx
 | `-o, --output <file>` | Output file | `-o report.docx` |
 | `-s, --standalone` | Standalone document | `-s` |
 | `-f, --from <format>` | Input format | `-f markdown` |
-| `--reference-doc=<file>` | Word template for styles | `--reference-doc=vs-sistemas.docx` |
+| `--reference-doc=<file>` | Word template for styles | `--reference-doc=delfos-dark-template.docx` |
 | `--toc` | Include table of contents | `--toc` |
 | `--toc-depth=<N>` | TOC depth (default: 3) | `--toc-depth=2` |
 | `--metadata <key>=<val>` | Set metadata field | `--metadata title="Report"` |
@@ -170,7 +169,7 @@ lang: es-ES
 toc: true
 toc-depth: 3
 number-sections: true
-reference-doc: .github/skills/markdown-to-word/templates/vs-sistemas.docx
+reference-doc: .github/skills/markdown-to-word/templates/delfos-dark-template.docx
 ---
 ```
 
@@ -195,9 +194,9 @@ reference-doc: .github/skills/markdown-to-word/templates/vs-sistemas.docx
 2. Open in Word and customize styles (Heading 1–6, Body Text, Source Code, etc.)
 3. Use: `pandoc input.md -s --reference-doc=my-template.docx -o output.docx`
 
-### VS Sistemas Template Style Map
+### Delfos Template Style Map
 
-| Pandoc Element | Word Style | VS Sistemas Appearance |
+| Pandoc Element | Word Style | Delfos Appearance |
 |----------------|-----------|----------------------|
 | `# Heading 1` | Heading 1 | Calibri 20pt bold, orange #FE5000 |
 | `## Heading 2` | Heading 2 | Calibri 16pt, orange #FE5000 |
@@ -274,7 +273,7 @@ For complex tables see [references/PANDOC-TABLES.md](references/PANDOC-TABLES.md
 
 ```bash
 for f in *.md; do
-    pandoc "$f" -s --reference-doc=.github/skills/markdown-to-word/templates/vs-sistemas.docx --toc -o "${f%.md}.docx"
+    pandoc "$f" -s --reference-doc=.github/skills/markdown-to-word/templates/delfos-dark-template.docx --toc -o "${f%.md}.docx"
 done
 ```
 
@@ -283,7 +282,7 @@ done
 ```powershell
 Get-ChildItem -Filter "*.md" | ForEach-Object {
     $output = $_.BaseName + ".docx"
-    pandoc $_.FullName -s --reference-doc=.github/skills/markdown-to-word/templates/vs-sistemas.docx --toc -o $output
+    pandoc $_.FullName -s --reference-doc=.github/skills/markdown-to-word/templates/delfos-dark-template.docx --toc -o $output
 }
 ```
 
@@ -296,7 +295,7 @@ Get-ChildItem -Path $srcDir -Filter "*.md" -Recurse | ForEach-Object {
     $out = Join-Path $outDir ($rel -replace '\.md$', '.docx')
     $dir = Split-Path $out -Parent
     if (-not (Test-Path $dir)) { New-Item -Path $dir -ItemType Directory -Force | Out-Null }
-    pandoc $_.FullName -s --reference-doc=.github/skills/markdown-to-word/templates/vs-sistemas.docx -o $out
+    pandoc $_.FullName -s --reference-doc=.github/skills/markdown-to-word/templates/delfos-dark-template.docx -o $out
 }
 ```
 
@@ -306,10 +305,10 @@ Get-ChildItem -Path $srcDir -Filter "*.md" -Recurse | ForEach-Object {
 
 ```bash
 pandoc input.md -s \
-  --reference-doc=.github/skills/markdown-to-word/templates/vs-sistemas.docx \
+  --reference-doc=.github/skills/markdown-to-word/templates/delfos-dark-template.docx \
   --toc --toc-depth=3 --number-sections \
   --metadata title="Annual Report 2025" \
-  --metadata author="VS Sistemas" \
+  --metadata author="Delfos" \
   --metadata date="December 2025" \
   --metadata lang="es-ES" \
   --dpi=300 --resource-path=./images \
@@ -321,7 +320,7 @@ pandoc input.md -s \
 
 ```bash
 pandoc chapter1.md chapter2.md chapter3.md \
-  -s --reference-doc=.github/skills/markdown-to-word/templates/vs-sistemas.docx \
+  -s --reference-doc=.github/skills/markdown-to-word/templates/delfos-dark-template.docx \
   --toc --number-sections -o complete-book.docx
 ```
 
@@ -329,7 +328,7 @@ pandoc chapter1.md chapter2.md chapter3.md \
 
 ```bash
 pandoc input.md -s --lua-filter=custom-filter.lua \
-  --reference-doc=.github/skills/markdown-to-word/templates/vs-sistemas.docx -o output.docx
+  --reference-doc=.github/skills/markdown-to-word/templates/delfos-dark-template.docx -o output.docx
 ```
 
 ## Conversion Script
@@ -337,11 +336,11 @@ pandoc input.md -s --lua-filter=custom-filter.lua \
 For automated conversions use: [scripts/convert-md-to-docx.ps1](scripts/convert-md-to-docx.ps1)
 
 ```powershell
-# Single file with VS Sistemas template
-.\scripts\convert-md-to-docx.ps1 -InputFile "report.md" -Template ".github/skills/markdown-to-word/templates/vs-sistemas.docx" -Toc
+# Single file with Delfos template
+.\scripts\convert-md-to-docx.ps1 -InputFile "report.md" -Template ".github/skills/markdown-to-word/templates/delfos-dark-template.docx" -Toc
 
 # Batch
-.\scripts\convert-md-to-docx.ps1 -InputDir "docs/" -Template ".github/skills/markdown-to-word/templates/vs-sistemas.docx" -Toc -Recursive
+.\scripts\convert-md-to-docx.ps1 -InputDir "docs/" -Template ".github/skills/markdown-to-word/templates/delfos-dark-template.docx" -Toc -Recursive
 ```
 
 ## Troubleshooting

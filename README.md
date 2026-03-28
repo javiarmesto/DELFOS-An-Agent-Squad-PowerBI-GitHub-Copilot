@@ -105,6 +105,18 @@ Skills are on-demand prompt templates designed for specific recurring tasks. Inv
 | **Report Design Consultation** | Visualization strategy | Designing new or redesigning existing reports |
 | **BC Data Source Mapping** | Map star schema to BC APIs, generate ALDC specs for gaps | Power BI project sourcing data from Business Central |
 
+### Prompts
+
+Prompts are quick-invoke templates you run with `#prompt-name` in Copilot Chat. They handle session management and diagnostic checks.
+
+| Prompt | Command | Purpose |
+|--------|---------|---------|
+| **PBI Init** | `#delfos-pbi-init` | Detect PBI Desktop instances, select a model, connect via MCP, and save as last-used connection |
+| **PBI Reconnect** | `#delfos-pbi-reconnect` | Restore the last-used MCP connection or pick from available instances |
+| **PBI Preflight Check** | `#delfos-pbi-preflight-check` | Verify PBI Desktop is connected before editing the semantic model |
+
+Typical workflow: run `#delfos-pbi-init` at the start of a session, `#delfos-pbi-reconnect` if PBI Desktop was restarted, and `#delfos-pbi-preflight-check` before any model edit.
+
 ### MCP Integration — The Engine Behind Delfos
 
 Delfos is not just prompts and best practices. Its agents operate against **live Power BI models** through two complementary MCP servers provided by Microsoft. This is the core differentiator: every recommendation, validation, and optimization is grounded in the real state of your semantic model.
@@ -189,7 +201,9 @@ cp delfos-powerbi-agentic-squad/.vscode/mcp.json your-powerbi-project/.vscode/mc
 
 3. **Open your project in VS Code** — instructions apply automatically based on file patterns. Agent modes are available in GitHub Copilot Chat.
 
-4. **Follow the [Quickstart Guide](docs/QUICKSTART.md)** to build a complete Sales Order Tracker dashboard using the full workflow.
+4. **Initialize your MCP session** — run `#delfos-pbi-init` in Copilot Chat to detect open PBI Desktop instances and connect.
+
+5. **Follow the [Quickstart Guide](docs/QUICKSTART.md)** to build a complete Sales Order Tracker dashboard using the full workflow.
 
 ### Using Agent Modes
 
@@ -252,6 +266,8 @@ delfos-powerbi-agentic-squad/
 │   │       └── delfos-check-pbi-tmdl.ps1    #   Gate script for TMDL edits
 │   │
 │   ├── prompts/                             # Invocable prompt templates
+│   │   ├── delfos-pbi-init.prompt.md             # Connect to PBI Desktop instance
+│   │   ├── delfos-pbi-reconnect.prompt.md        # Restore previous MCP connection
 │   │   └── delfos-pbi-preflight-check.prompt.md  # Manual pre-flight check
 │   │
 │   ├── plans/                               # Project plans and memory
@@ -283,7 +299,7 @@ delfos-powerbi-agentic-squad/
 | **Activation** | Manual (mode picker) | Automatic (file patterns) | Manual (prompt reference) | Automatic (tool events) | Manual (`#prompt-name`) |
 | **Scope** | Full conversation | Per-file context | Single task | Per tool call | Single task |
 | **Depth** | Deep domain expertise | Coding guidelines | Structured analysis | Gate / guard logic | Quick diagnostics |
-| **Use Case** | Complex decisions, architecture | Day-to-day coding | Specific audits and reviews | Prevent risky edits | Pre-flight checks |
+| **Use Case** | Complex decisions, architecture | Day-to-day coding | Specific audits and reviews | Prevent risky edits | Session init, pre-flight checks |
 
 ### Microsoft Documentation Integration
 
@@ -319,6 +335,7 @@ Every pattern, anti-pattern, and recommendation in Delfos traces back to officia
 | MCP Remote (query) | ✅ | — | — | ✅ | ✅ | ✅ | — | — | — | — |
 | MCP Modeling (write) | — | ✅ | ✅ | ✅ | — | — | — | — | — | — |
 | TMDL File Editing | — | — | ✅ | — | — | — | ✅ | — | ✅ | ✅ |
+| MCP Connection Mgmt | — | ✅ | — | — | — | — | — | — | — | ✅ |
 | Multi-phase Projects | ✅ | ✅ | — | — | — | — | — | — | — | — |
 | HITL Orchestration | — | ✅ | — | — | — | — | — | — | — | — |
 | BC → PBI Data Mapping | ✅ | ✅ | — | — | — | — | — | ✅ | — | — |
@@ -353,6 +370,7 @@ Delfos is designed for GitHub Copilot agent modes in VS Code but the content is 
 
 - [x] BC Data Source Mapping skill (Delfos → ALDC bridge)
 - [x] TMDL editing safeguards (PreToolUse hook + instruction + prompt)
+- [x] MCP session management prompts (init + reconnect)
 - [ ] Semantic Model validation skill (automated TMDL checks)
 - [ ] Power Query / M language agent mode
 - [ ] Fabric Lakehouse integration patterns

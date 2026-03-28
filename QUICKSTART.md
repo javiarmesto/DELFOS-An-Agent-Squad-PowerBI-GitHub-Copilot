@@ -46,7 +46,7 @@ SO-1008,Trey Research,Central,2026-03-15,Released,7800.00,2026-03-22
 
 **Time:** ~3 minutes
 
-Before the agents can work against a real model, both MCP servers need to be connected. This step is not orchestrated by Delfos — it's infrastructure setup you do once.
+Before the agents can work against a real model, both MCP servers need to be connected.
 
 ### Remote MCP (query path)
 
@@ -74,6 +74,22 @@ Install the [Power BI Modeling MCP extension](https://marketplace.visualstudio.c
 - **Option C — PBIP/TMDL files:** Point the Modeling MCP at a folder of TMDL files for headless editing without Power BI Desktop.
 
 For this quickstart, **Option A or B both work**. If you're using the sample CSV, start with a blank `.pbix` in Power BI Desktop (Option B).
+
+### Quick Connect with `#delfos-pbi-init`
+
+Instead of configuring the Modeling MCP connection manually, run the init prompt in Copilot Chat:
+
+```
+#delfos-pbi-init
+```
+
+This will:
+1. Detect all running Power BI Desktop instances automatically
+2. Show you which models are open and let you pick one
+3. Connect via the Modeling MCP
+4. Save the connection as "last used" for quick reconnection later
+
+> **Tip — Lost connection?** If Power BI Desktop restarts mid-session or the connection drops, run `#delfos-pbi-reconnect` to restore the previous connection without repeating the full setup.
 
 ### How Each Phase Uses MCP
 
@@ -454,7 +470,7 @@ This quickstart demonstrated the core Delfos workflow:
 
 | Step | Agent | MCP Used | What It Did |
 |------|-------|----------|-------------|
-| Setup | — | Both | Connected Remote + Modeling MCP to your workspace |
+| Setup | `#delfos-pbi-init` | Both | Detected PBI Desktop, connected Modeling MCP, saved session |
 | Architecture | `@delfos-architect` | Remote | Inspected existing schema, designed 6-layer architecture |
 | BC Mapping | bc-data-source-mapping skill | — | Mapped star schema to BC APIs, identified gaps for ALDC |
 | Planning | `@delfos-lead-squad` | — | Decomposed into phased plan with expert assignments |
@@ -495,6 +511,7 @@ Now that you've completed the quickstart:
 3. **Explore skills** — Run a [Model Design Review](../.github/skills/power-bi-model-design-review/power-bi-model-design-review/SKILL.md) on an existing model
 4. **Customize** — Add your own instructions or skills to the `.github/` structure
 5. **Go deeper with MCP** — Try multi-model orchestration (connect to two semantic models simultaneously) or headless TMDL editing for CI/CD pipelines
+6. **Use session prompts** — Start every session with `#delfos-pbi-init` and use `#delfos-pbi-reconnect` if the connection drops
 
 ---
 
@@ -503,7 +520,7 @@ Now that you've completed the quickstart:
 After completing the quickstart, verify:
 
 - [ ] Remote MCP authenticated and responding to schema queries
-- [ ] Modeling MCP connected to semantic model (Fabric workspace or Desktop)
+- [ ] Modeling MCP connected via `#delfos-pbi-init` (or manually to Fabric workspace / Desktop)
 - [ ] BC Data Source Mapping completed: tables classified as COVERED / PARTIAL / N/A
 - [ ] ALDC spec generated for any PARTIAL or NOT COVERED tables (if applicable)
 - [ ] `.github/plans/order-tracker/architecture.md` exists with approved design
