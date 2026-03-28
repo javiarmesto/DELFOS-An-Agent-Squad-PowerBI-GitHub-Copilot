@@ -233,7 +233,8 @@ delfos-powerbi-agentic-squad/
 │   │   ├── power-bi-dax-best-practices.instructions.md
 │   │   ├── power-bi-custom-visuals-development.instructions.md
 │   │   ├── power-bi-devops-alm-best-practices.instructions.md
-│   │   └── power-bi-security-rls-best-practices.instructions.md
+│   │   ├── power-bi-security-rls-best-practices.instructions.md
+│   │   └── delfos-tmdl-file-editing.instructions.md #   TMDL encoding, M syntax, MCP-first rules
 │   │
 │   ├── skills/                              # On-demand prompt skills
 │   │   ├── bc-data-source-mapping/          # Delfos → ALDC bridge
@@ -244,6 +245,14 @@ delfos-powerbi-agentic-squad/
 │   │   ├── power-bi-model-design-review/
 │   │   ├── power-bi-performance-troubleshooting/
 │   │   └── power-bi-report-design-consultation/
+│   │
+│   ├── hooks/                               # Lifecycle hooks (PreToolUse gates)
+│   │   ├── delfos-pbi-preflight-check.json  #   TMDL edit gate — checks PBI Desktop
+│   │   └── scripts/
+│   │       └── delfos-check-pbi-tmdl.ps1    #   Gate script for TMDL edits
+│   │
+│   ├── prompts/                             # Invocable prompt templates
+│   │   └── delfos-pbi-preflight-check.prompt.md  # Manual pre-flight check
 │   │
 │   ├── plans/                               # Project plans and memory
 │   │   └── memory.md
@@ -269,12 +278,12 @@ delfos-powerbi-agentic-squad/
 
 ### Agent Modes vs Instructions vs Skills
 
-| Aspect | Agent Modes | Instructions | Skills |
-|--------|-------------|--------------|--------|
-| **Activation** | Manual (mode picker) | Automatic (file patterns) | Manual (prompt reference) |
-| **Scope** | Full conversation | Per-file context | Single task |
-| **Depth** | Deep domain expertise | Coding guidelines | Structured analysis |
-| **Use Case** | Complex decisions, architecture | Day-to-day coding | Specific audits and reviews |
+| Aspect | Agent Modes | Instructions | Skills | Hooks | Prompts |
+|--------|-------------|--------------|--------|-------|----------|
+| **Activation** | Manual (mode picker) | Automatic (file patterns) | Manual (prompt reference) | Automatic (tool events) | Manual (`#prompt-name`) |
+| **Scope** | Full conversation | Per-file context | Single task | Per tool call | Single task |
+| **Depth** | Deep domain expertise | Coding guidelines | Structured analysis | Gate / guard logic | Quick diagnostics |
+| **Use Case** | Complex decisions, architecture | Day-to-day coding | Specific audits and reviews | Prevent risky edits | Pre-flight checks |
 
 ### Microsoft Documentation Integration
 
@@ -294,24 +303,25 @@ Every pattern, anti-pattern, and recommendation in Delfos traces back to officia
 
 ## Coverage Matrix
 
-| Topic | Architect | Lead Squad | Modeling | DAX | Performance | Viz | Instruction | Skill |
-|-------|:---------:|:----------:|:--------:|:---:|:-----------:|:---:|:-----------:|:-----:|
-| Star Schema Design | ✅ | — | ✅ | — | — | — | ✅ | ✅ |
-| DAX Formulas | ✅ | — | — | ✅ | — | — | ✅ | ✅ |
-| DAX Performance | ✅ | — | — | ✅ | ✅ | — | ✅ | ✅ |
-| Time Intelligence | ✅ | — | — | ✅ | — | — | ✅ | — |
-| Row-Level Security | ✅ | — | — | — | — | — | ✅ | — |
-| Custom Visuals | — | — | — | — | — | ✅ | ✅ | — |
-| DevOps / CI-CD | ✅ | — | — | — | — | — | ✅ | — |
-| Report Design | ✅ | — | — | — | — | ✅ | — | ✅ |
-| Performance Tuning | ✅ | — | — | — | ✅ | — | — | ✅ |
-| Model Review | ✅ | — | ✅ | — | — | — | — | ✅ |
-| Composite Models | ✅ | — | ✅ | — | — | — | ✅ | — |
-| MCP Remote (query) | ✅ | — | — | ✅ | ✅ | ✅ | — | — |
-| MCP Modeling (write) | — | ✅ | ✅ | ✅ | — | — | — | — |
-| Multi-phase Projects | ✅ | ✅ | — | — | — | — | — | — |
-| HITL Orchestration | — | ✅ | — | — | — | — | — | — |
-| BC → PBI Data Mapping | ✅ | ✅ | — | — | — | — | — | ✅ |
+| Topic | Architect | Lead Squad | Modeling | DAX | Performance | Viz | Instruction | Skill | Hook | Prompt |
+|-------|:---------:|:----------:|:--------:|:---:|:-----------:|:---:|:-----------:|:-----:|:----:|:------:|
+| Star Schema Design | ✅ | — | ✅ | — | — | — | ✅ | ✅ | — | — |
+| DAX Formulas | ✅ | — | — | ✅ | — | — | ✅ | ✅ | — | — |
+| DAX Performance | ✅ | — | — | ✅ | ✅ | — | ✅ | ✅ | — | — |
+| Time Intelligence | ✅ | — | — | ✅ | — | — | ✅ | — | — | — |
+| Row-Level Security | ✅ | — | — | — | — | — | ✅ | — | — | — |
+| Custom Visuals | — | — | — | — | — | ✅ | ✅ | — | — | — |
+| DevOps / CI-CD | ✅ | — | — | — | — | — | ✅ | — | — | — |
+| Report Design | ✅ | — | — | — | — | ✅ | — | ✅ | — | — |
+| Performance Tuning | ✅ | — | — | — | ✅ | — | — | ✅ | — | — |
+| Model Review | ✅ | — | ✅ | — | — | — | — | ✅ | — | — |
+| Composite Models | ✅ | — | ✅ | — | — | — | ✅ | — | — | — |
+| MCP Remote (query) | ✅ | — | — | ✅ | ✅ | ✅ | — | — | — | — |
+| MCP Modeling (write) | — | ✅ | ✅ | ✅ | — | — | — | — | — | — |
+| TMDL File Editing | — | — | ✅ | — | — | — | ✅ | — | ✅ | ✅ |
+| Multi-phase Projects | ✅ | ✅ | — | — | — | — | — | — | — | — |
+| HITL Orchestration | — | ✅ | — | — | — | — | — | — | — | — |
+| BC → PBI Data Mapping | ✅ | ✅ | — | — | — | — | — | ✅ | — | — |
 
 ## Delfos → ALDC Bridge (Business Central Projects)
 
@@ -342,6 +352,7 @@ Delfos is designed for GitHub Copilot agent modes in VS Code but the content is 
 ## Roadmap
 
 - [x] BC Data Source Mapping skill (Delfos → ALDC bridge)
+- [x] TMDL editing safeguards (PreToolUse hook + instruction + prompt)
 - [ ] Semantic Model validation skill (automated TMDL checks)
 - [ ] Power Query / M language agent mode
 - [ ] Fabric Lakehouse integration patterns
