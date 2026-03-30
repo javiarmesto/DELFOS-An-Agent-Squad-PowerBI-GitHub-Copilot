@@ -12,7 +12,7 @@
 
 Delfos provides a structured, agent-driven approach to Power BI development. Instead of relying on generic AI assistance, Delfos equips your coding assistant with **specialized expert modes**, **orchestration agents**, and **prompt-based skills** that follow Microsoft's official best practices.
 
-Think of it as your Power BI oracle — a coordinated squad with an architect for strategic design, a lead for orchestration, and four domain experts ready to execute.
+Think of it as your Power BI oracle — a coordinated squad with an architect for strategic design, a lead for orchestration, and five domain experts ready to execute.
 
 > **New to Delfos?** Jump to the [Quickstart Guide](docs/QUICKSTART.md) — build a complete Sales Order Tracker dashboard in under 30 minutes using the full Architect → Lead Squad → Experts workflow.
 
@@ -23,12 +23,12 @@ Delfos started as a set of individual contributions to [**github/awesome-copilot
 What awesome-copilot provides is a catalog of standalone pieces. What was missing was the **orchestration layer** — a way to coordinate those experts into a structured workflow where architecture decisions flow into phased implementation, with human-in-the-loop gates at every boundary. Delfos adds that layer: the **Architect** for unified cross-layer design, the **Lead Squad** for phased orchestration, and the **Quickstart** that ties everything together with a working example.
 
 ```
-awesome-copilot (FOUNDATION)  →  Delfos (ORCHESTRATION)
+awesome-copilot (FOUNDATION)  →  Delfos (ORCHESTRATION + EXPANSION)
      │                                │
-  4 experts (standalone)         Architect + Lead Squad
-  5 instructions                 HITL gates + checkpoints
-  4 skills                       Quickstart workflow
-  power-bi-development plugin    Architecture documents + memory
+  4 experts (standalone)         Architect + Lead Squad + PBIP Validator
+  5 instructions                 7 instructions (+ Power Query)
+  4 skills                       21 skills (+ 17 new domains)
+  power-bi-development plugin    8 diagnostic prompts, 2 safety hooks, AGENT-TONE
 ```
 
 ## Why Delfos?
@@ -39,7 +39,7 @@ Delfos solves this by providing a **layered agent architecture** — from strate
 
 ## The Squad
 
-Delfos is organized in three tiers: orchestration agents that plan and coordinate, domain experts that execute, plus instruction sets and reusable skills.
+Delfos is organized in three tiers: orchestration agents that plan and coordinate, domain experts that execute, plus instruction sets, reusable skills, diagnostic prompts, and safety hooks.
 
 ```
 @delfos-architect  (DESIGN)  →  @delfos-lead-squad  (ORCHESTRATE)  →  Experts  (EXECUTE)
@@ -68,6 +68,7 @@ Domain experts are specialized AI personas activated in GitHub Copilot Chat. Eac
 | **DAX Expert** | Formulas & Calculations | Variable-based formulas, time intelligence, context transitions, error handling, performance patterns |
 | **Performance Expert** | Optimization & Monitoring | Query diagnostics, model size reduction, DirectQuery tuning, capacity management, KQL monitoring |
 | **Visualization Expert** | Reports & UX | Chart selection methodology, layout architecture, accessibility, mobile design, custom themes |
+| **PBIP Validator** | Project Validation | 5-stage validation pipeline: project structure, TMDL syntax & encoding, PBIR JSON integrity, cross-reference consistency, post-rename verification |
 
 Each expert follows a consistent response structure: Documentation Lookup → Requirements Analysis → Recommendation → Implementation Guidance → Validation Approach.
 
@@ -89,13 +90,14 @@ Instructions are always-on guidelines that apply automatically based on file pat
 |-------------|-----------|----------|
 | **Data Modeling Best Practices** | `*.pbix, *.md, *.json, *.txt` | Star schema, relationships, storage modes, SCD, incremental refresh |
 | **DAX Best Practices** | `*.pbix, *.dax, *.md, *.txt` | Formula structure, variables, reference syntax, error handling, time intelligence |
+| **Power Query Best Practices** | `*.m, *.pq, *.pbix, *.json, *.md, *.txt` | Query folding, M performance, data types, parameterization, incremental load patterns |
 | **Custom Visuals Development** | `*.ts, *.tsx, *.js, *.jsx, *.json, *.less, *.css` | React/D3.js, TypeScript patterns, testing, formatting model, tooltips |
 | **DevOps & ALM** | `*.yml, *.yaml, *.ps1, *.json, *.pbix, *.pbir` | PBIP, Git workflows, CI/CD, Azure DevOps, Fabric REST API |
 | **Security & RLS** | `*.pbix, *.dax, *.md, *.txt, *.json, *.csharp, *.powershell` | Row-level security, dynamic RLS, embedded analytics, governance |
 
 ### Skills
 
-Skills are on-demand prompt templates designed for specific recurring tasks. Invoke them when you need focused, structured analysis.
+Skills are on-demand prompt templates designed for specific recurring tasks. Invoke them when you need focused, structured analysis. Each skill includes trigger phrases (`USE WHEN`) and cross-references to related skills (`RELATED SKILLS`) forming a navigable knowledge graph.
 
 | Skill | Purpose | When to Use |
 |-------|---------|-------------|
@@ -103,19 +105,46 @@ Skills are on-demand prompt templates designed for specific recurring tasks. Inv
 | **Model Design Review** | Comprehensive model audit | Before production deployment or inheriting a model |
 | **Performance Troubleshooting** | Systematic issue diagnosis | Slow reports, query timeouts, capacity stress |
 | **Report Design Consultation** | Visualization strategy | Designing new or redesigning existing reports |
-| **BC Data Source Mapping** | Map star schema to BC APIs, generate ALDC specs for gaps | Power BI project sourcing data from Business Central |
+| **TMDL Authoring** | Advanced TMDL syntax, encoding, and object reference | Direct TMDL file editing (last resort, prefer MCP) |
+| **PBIR Format** | Report metadata structure and visual definitions | Editing PBIR JSON files directly |
+| **PBIP Format** | Project structure, Git workflows, conversion | PBIP project management, PBIX→PBIP migration |
+| **Deneb Visuals** | Vega/Vega-Lite custom visuals in Power BI | Creating declarative custom charts with Deneb |
+| **SVG Visuals** | Inline SVG graphics via DAX measures | KPI indicators, progress bars, sparklines, star ratings |
+| **R Visuals** | R script visuals (ggplot2) | Statistical charts: box plots, violin, correlation matrix |
+| **Python Visuals** | Python script visuals (matplotlib/seaborn) | Heatmaps, pair plots, density charts, annotations |
+| **Theme JSON** | Report theme design, validation, and management | Custom color palettes, dark themes, brand compliance |
+| **Tabular Editor BPA** | Best Practice Analyzer rules for TE | Creating/debugging BPA rules with Dynamic LINQ |
+| **Fabric CLI** | Remote operations via fab CLI and REST API | Workspace management, deployment pipelines, refresh triggers |
+| **Lineage Analysis** | Dependency tracing and impact assessment | Before renaming/deleting objects, change management |
+| **Naming Conventions** | Naming standards audit and standardization | Inconsistent names, model cleanup, onboarding standards |
+| **Semantic Model Refresh** | Refresh management and troubleshooting | Failed refreshes, incremental setup, scheduling, monitoring |
+| **BC Data Source Mapping** | Map star schema to BC APIs, generate ALDC specs | Power BI project sourcing data from Business Central |
 
 ### Prompts
 
-Prompts are quick-invoke templates you run with `#prompt-name` in Copilot Chat. They handle session management and diagnostic checks.
+Prompts are quick-invoke templates you run with `#prompt-name` in Copilot Chat. They handle session management and quick diagnostic checks.
+
+**Session Management:**
 
 | Prompt | Command | Purpose |
 |--------|---------|---------|
-| **PBI Init** | `#delfos-pbi-init` | Detect PBI Desktop instances, select a model, connect via MCP, and save as last-used connection |
+| **PBI Init** | `#delfos-pbi-init` | Detect PBI Desktop instances, select a model, connect via MCP |
 | **PBI Reconnect** | `#delfos-pbi-reconnect` | Restore the last-used MCP connection or pick from available instances |
 | **PBI Preflight Check** | `#delfos-pbi-preflight-check` | Verify PBI Desktop is connected before editing the semantic model |
 
-Typical workflow: run `#delfos-pbi-init` at the start of a session, `#delfos-pbi-reconnect` if PBI Desktop was restarted, and `#delfos-pbi-preflight-check` before any model edit.
+**Quick Diagnostics:**
+
+| Prompt | Command | Purpose |
+|--------|---------|---------|
+| **Audit Context** | `#delfos-pbi-audit-context` | Audit project configuration: MCP, PBIP structure, agents, memory |
+| **Quick Model Review** | `#delfos-pbi-quick-model-review` | 8-category model health check (schema, relationships, naming, types) |
+| **Quick DAX Review** | `#delfos-pbi-quick-dax-review` | 10-check DAX anti-pattern scan (DIVIDE, variables, qualifiers) |
+| **Quick Performance Check** | `#delfos-pbi-quick-performance-check` | 6-dimension performance diagnostics with traffic-light scoring |
+| **Security Audit** | `#delfos-pbi-security-audit` | RLS/OLS audit: roles, expressions, dynamic RLS, anti-patterns |
+
+Each diagnostic prompt delegates to the relevant domain expert agent when issues require deeper analysis.
+
+Typical workflow: `#delfos-pbi-init` → `#delfos-pbi-audit-context` → `#delfos-pbi-quick-model-review` → work with experts.
 
 ### MCP Integration — The Engine Behind Delfos
 
@@ -234,46 +263,66 @@ The model has 3 fact tables (Sales, Inventory, Returns) and 8 dimensions...
 delfos-powerbi-agentic-squad/
 │
 ├── .github/
-│   ├── agents/                              # Orchestration + Domain expert agents
+│   ├── agents/                              # Orchestration + Domain expert agents (7)
 │   │   ├── delfos-architect.agent.md        #   Full-stack architecture designer
 │   │   ├── delfos-lead-squad.agent.md       #   Project orchestrator (HITL, checkpoints)
 │   │   ├── power-bi-data-modeling-expert.agent.md
 │   │   ├── power-bi-dax-expert.agent.md
+│   │   ├── power-bi-pbip-validator.agent.md #   PBIP project validation (5-stage pipeline)
 │   │   ├── power-bi-performance-expert.agent.md
 │   │   └── power-bi-visualization-expert.agent.md
 │   │
-│   ├── instructions/                        # Always-on coding guidelines
+│   ├── instructions/                        # Always-on coding guidelines (7)
 │   │   ├── power-bi-data-modeling-best-practices.instructions.md
 │   │   ├── power-bi-dax-best-practices.instructions.md
+│   │   ├── power-bi-power-query-best-practices.instructions.md  # Query folding, M patterns
 │   │   ├── power-bi-custom-visuals-development.instructions.md
 │   │   ├── power-bi-devops-alm-best-practices.instructions.md
 │   │   ├── power-bi-security-rls-best-practices.instructions.md
-│   │   └── delfos-tmdl-file-editing.instructions.md #   TMDL encoding, M syntax, MCP-first rules
+│   │   └── delfos-tmdl-file-editing.instructions.md
 │   │
-│   ├── skills/                              # On-demand prompt skills
-│   │   ├── bc-data-source-mapping/          # Delfos → ALDC bridge
-│   │   │   ├── SKILL.md
-│   │   │   └── references/
-│   │   │       └── bc-api-v2-catalog.md
-│   │   ├── power-bi-dax-optimization/
-│   │   ├── power-bi-model-design-review/
+│   ├── skills/                              # On-demand prompt skills (21)
+│   │   ├── bc-data-source-mapping/          #   Delfos → ALDC bridge
+│   │   ├── power-bi-dax-optimization/       #   DAX formula analysis
+│   │   ├── power-bi-deneb-visuals/          #   Deneb/Vega-Lite custom visuals
+│   │   ├── power-bi-fabric-cli/             #   Fabric CLI remote operations
+│   │   ├── power-bi-lineage-analysis/       #   Dependency tracing & impact
+│   │   ├── power-bi-model-design-review/    #   Semantic model audit
+│   │   ├── power-bi-naming-conventions/     #   Naming standards audit
+│   │   ├── power-bi-pbip-format/            #   PBIP project structure
+│   │   ├── power-bi-pbir-format/            #   PBIR report metadata
 │   │   ├── power-bi-performance-troubleshooting/
-│   │   └── power-bi-report-design-consultation/
+│   │   ├── power-bi-python-visuals/         #   matplotlib/seaborn visuals
+│   │   ├── power-bi-r-visuals/              #   ggplot2 visuals
+│   │   ├── power-bi-report-design-consultation/
+│   │   ├── power-bi-semantic-model-refresh/ #   Refresh management
+│   │   ├── power-bi-svg-visuals/            #   SVG via DAX measures
+│   │   ├── power-bi-tabular-editor-bpa/     #   BPA rules (Dynamic LINQ)
+│   │   ├── power-bi-theme-json/             #   Report theme management
+│   │   ├── power-bi-tmdl-authoring/         #   Advanced TMDL authoring
+│   │   ├── markdown-converter/
+│   │   ├── markdown-to-html/
+│   │   └── markdown-to-word/
 │   │
-│   ├── hooks/                               # Lifecycle hooks (PreToolUse gates)
-│   │   ├── delfos-pbi-preflight-check.json  #   TMDL edit gate — checks PBI Desktop
+│   ├── hooks/                               # Pre + PostToolUse safety gates
+│   │   ├── delfos-pbi-preflight-check.json  #   PreToolUse: TMDL edit gate
+│   │   ├── delfos-pbi-post-validation.json  #   PostToolUse: JSON/TMDL validation
 │   │   └── scripts/
-│   │       └── delfos-check-pbi-tmdl.ps1    #   Gate script for TMDL edits
+│   │       ├── delfos-check-pbi-tmdl.ps1    #   Pre-flight gate script
+│   │       └── delfos-post-validate.ps1     #   Post-edit validation script
 │   │
-│   ├── prompts/                             # Invocable prompt templates
-│   │   ├── delfos-pbi-init.prompt.md             # Connect to PBI Desktop instance
-│   │   ├── delfos-pbi-reconnect.prompt.md        # Restore previous MCP connection
-│   │   └── delfos-pbi-preflight-check.prompt.md  # Manual pre-flight check
+│   ├── prompts/                             # Session + diagnostic prompts (8)
+│   │   ├── delfos-pbi-init.prompt.md
+│   │   ├── delfos-pbi-reconnect.prompt.md
+│   │   ├── delfos-pbi-preflight-check.prompt.md
+│   │   ├── delfos-pbi-audit-context.prompt.md
+│   │   ├── delfos-pbi-quick-model-review.prompt.md
+│   │   ├── delfos-pbi-quick-dax-review.prompt.md
+│   │   ├── delfos-pbi-quick-performance-check.prompt.md
+│   │   └── delfos-pbi-security-audit.prompt.md
 │   │
-│   ├── plans/                               # Project plans and memory
-│   │   └── memory.md
-│   │
-│   └── memory.md                            # Cross-session decisions
+│   ├── AGENT-TONE.md                        # Consistent agent behavior guidelines
+│   └── memory.md                            # Cross-session decisions (append-only)
 │
 ├── .vscode/
 │   └── mcp.json                             # Power BI Remote MCP + Modeling MCP
@@ -319,26 +368,34 @@ Every pattern, anti-pattern, and recommendation in Delfos traces back to officia
 
 ## Coverage Matrix
 
-| Topic | Architect | Lead Squad | Modeling | DAX | Performance | Viz | Instruction | Skill | Hook | Prompt |
-|-------|:---------:|:----------:|:--------:|:---:|:-----------:|:---:|:-----------:|:-----:|:----:|:------:|
-| Star Schema Design | ✅ | — | ✅ | — | — | — | ✅ | ✅ | — | — |
-| DAX Formulas | ✅ | — | — | ✅ | — | — | ✅ | ✅ | — | — |
-| DAX Performance | ✅ | — | — | ✅ | ✅ | — | ✅ | ✅ | — | — |
-| Time Intelligence | ✅ | — | — | ✅ | — | — | ✅ | — | — | — |
-| Row-Level Security | ✅ | — | — | — | — | — | ✅ | — | — | — |
-| Custom Visuals | — | — | — | — | — | ✅ | ✅ | — | — | — |
-| DevOps / CI-CD | ✅ | — | — | — | — | — | ✅ | — | — | — |
-| Report Design | ✅ | — | — | — | — | ✅ | — | ✅ | — | — |
-| Performance Tuning | ✅ | — | — | — | ✅ | — | — | ✅ | — | — |
-| Model Review | ✅ | — | ✅ | — | — | — | — | ✅ | — | — |
-| Composite Models | ✅ | — | ✅ | — | — | — | ✅ | — | — | — |
-| MCP Remote (query) | ✅ | — | — | ✅ | ✅ | ✅ | — | — | — | — |
-| MCP Modeling (write) | — | ✅ | ✅ | ✅ | — | — | — | — | — | — |
-| TMDL File Editing | — | — | ✅ | — | — | — | ✅ | — | ✅ | ✅ |
-| MCP Connection Mgmt | — | ✅ | — | — | — | — | — | — | — | ✅ |
-| Multi-phase Projects | ✅ | ✅ | — | — | — | — | — | — | — | — |
-| HITL Orchestration | — | ✅ | — | — | — | — | — | — | — | — |
-| BC → PBI Data Mapping | ✅ | ✅ | — | — | — | — | — | ✅ | — | — |
+| Topic | Architect | Lead Squad | Modeling | DAX | Perf | Viz | PBIP Val | Instruction | Skill | Hook | Prompt |
+|-------|:---------:|:----------:|:--------:|:---:|:----:|:---:|:--------:|:-----------:|:-----:|:----:|:------:|
+| Star Schema Design | ✅ | — | ✅ | — | — | — | — | ✅ | ✅ | — | ✅ |
+| DAX Formulas | ✅ | — | — | ✅ | — | — | — | ✅ | ✅ | — | ✅ |
+| DAX Performance | ✅ | — | — | ✅ | ✅ | — | — | ✅ | ✅ | — | ✅ |
+| Power Query / M | ✅ | — | — | — | — | — | — | ✅ | — | — | — |
+| Row-Level Security | ✅ | — | — | — | — | — | — | ✅ | — | — | ✅ |
+| Custom Visuals | — | — | — | — | — | ✅ | — | ✅ | — | — | — |
+| Deneb / Vega-Lite | — | — | — | — | — | ✅ | — | — | ✅ | — | — |
+| SVG / R / Python Visuals | — | — | — | — | — | — | — | — | ✅ | — | — |
+| Report Themes | — | — | — | — | — | ✅ | — | — | ✅ | — | — |
+| DevOps / CI-CD | ✅ | — | — | — | — | — | — | ✅ | ✅ | — | — |
+| Report Design | ✅ | — | — | — | — | ✅ | — | — | ✅ | — | — |
+| Performance Tuning | ✅ | — | — | — | ✅ | — | — | — | ✅ | — | ✅ |
+| Model Review | ✅ | — | ✅ | — | — | — | — | — | ✅ | — | ✅ |
+| Naming Conventions | — | — | — | — | — | — | — | — | ✅ | — | — |
+| Lineage / Impact | — | — | — | — | — | — | — | — | ✅ | — | — |
+| TMDL Authoring | — | — | ✅ | — | — | — | ✅ | ✅ | ✅ | ✅ | ✅ |
+| PBIP / PBIR Format | — | — | — | — | — | — | ✅ | — | ✅ | ✅ | ✅ |
+| Tabular Editor BPA | — | — | — | — | — | — | — | — | ✅ | — | — |
+| Fabric CLI / API | — | — | — | — | — | — | — | — | ✅ | — | — |
+| Semantic Model Refresh | — | — | — | — | — | — | — | — | ✅ | — | — |
+| Composite Models | ✅ | — | ✅ | — | — | — | — | ✅ | — | — | — |
+| MCP Remote (query) | ✅ | — | — | ✅ | ✅ | ✅ | — | — | — | — | ✅ |
+| MCP Modeling (write) | — | ✅ | ✅ | ✅ | — | — | — | — | — | — | ✅ |
+| MCP Connection Mgmt | — | ✅ | — | — | — | — | — | — | — | — | ✅ |
+| Multi-phase Projects | ✅ | ✅ | — | — | — | — | — | — | — | — | — |
+| BC → PBI Data Mapping | ✅ | ✅ | — | — | — | — | — | — | ✅ | — | — |
 
 ## Delfos → ALDC Bridge (Business Central Projects)
 
@@ -371,8 +428,19 @@ Delfos is designed for GitHub Copilot agent modes in VS Code but the content is 
 - [x] BC Data Source Mapping skill (Delfos → ALDC bridge)
 - [x] TMDL editing safeguards (PreToolUse hook + instruction + prompt)
 - [x] MCP session management prompts (init + reconnect)
-- [ ] Semantic Model validation skill (automated TMDL checks)
-- [ ] Power Query / M language agent mode
+- [x] Quick diagnostic prompts (model review, DAX review, performance, security audit)
+- [x] PostToolUse validation hook (JSON/TMDL integrity after edits)
+- [x] AGENT-TONE.md for consistent agent behavior
+- [x] PBIP Validator agent (5-stage project validation pipeline)
+- [x] Power Query best practices instruction
+- [x] Advanced TMDL authoring skill (full syntax reference)
+- [x] PBIP + PBIR format skills (project structure + report metadata)
+- [x] Visualization skills (Deneb/Vega-Lite, SVG, R, Python)
+- [x] Tabular Editor BPA rules skill (Dynamic LINQ expressions)
+- [x] Fabric CLI skill (remote operations + REST API)
+- [x] Theme JSON management skill
+- [x] Lineage analysis + naming conventions skills
+- [x] Semantic model refresh management skill
 - [ ] Fabric Lakehouse integration patterns
 - [ ] Paginated Reports agent mode
 - [ ] DAX Studio integration skill
@@ -393,4 +461,4 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ---
 
-**Delfos** — *Your Power BI oracle. One architect. One lead. Four experts. Zero guesswork.*
+**Delfos** — *Your Power BI oracle. One architect. One lead. Five experts. 21 skills. Zero guesswork.*
