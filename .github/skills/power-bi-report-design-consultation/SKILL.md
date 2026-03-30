@@ -1,6 +1,13 @@
 ---
 name: power-bi-report-design-consultation
-description: 'Power BI report visualization design prompt for creating effective, user-friendly, and accessible reports with optimal chart selection and layout design.'
+description: >
+  Power BI report visualization design prompt for creating effective, user-friendly,
+  and accessible reports with optimal chart selection and layout design.
+  USE WHEN: "design a report", "which chart should I use", "report layout advice",
+  "dashboard design", "visualization best practices", "mobile report design",
+  "accessibility review", "color scheme for report", "executive dashboard",
+  "KPI card design", "navigation design", "drill-through setup".
+  RELATED SKILLS: power-bi-model-design-review, power-bi-performance-troubleshooting.
 ---
 
 # Power BI Report Visualization Designer

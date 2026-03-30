@@ -3,6 +3,17 @@
         "powerbi-remote": {
             "type": "http",
             "url": "https://api.fabric.microsoft.com/v1/mcp/powerbi"
+        },
+        "microsoft-learn": {
+            "type": "http",
+            "url": "https://learn.microsoft.com/api/mcp"
         }
-    }
+    },
+    "inputs": [
+        {
+            "id": "powerbi-modeling-mcp-note",
+            "type": "text",
+            "description": "Power BI Modeling MCP is installed as a VS Code extension (analysis-services.powerbi-modeling-mcp). It does not need HTTP configuration here. Install it from VS Code Marketplace for WRITE operations on local semantic models."
+        }
+    ]
 }

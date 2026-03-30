@@ -25,26 +25,41 @@
 │   ├── power-bi-dax-best-practices.instructions.md
 │   ├── power-bi-devops-alm-best-practices.instructions.md
 │   └── power-bi-security-rls-best-practices.instructions.md
-├── skills/              # 8+ on-demand prompt templates (directory/SKILL.md)
-│   ├── bc-data-source-mapping/
-│   ├── power-bi-dax-optimization/
-│   ├── power-bi-model-design-review/
-│   ├── power-bi-performance-troubleshooting/
-│   ├── power-bi-report-design-consultation/
+├── skills/              # 14 on-demand prompt templates (directory/SKILL.md)
+│   ├── bc-data-source-mapping/            # BC API → PBI model mapping
+│   ├── power-bi-dax-optimization/         # DAX formula analysis & optimization
+│   ├── power-bi-deneb-visuals/            # Deneb/Vega-Lite custom visuals
+│   ├── power-bi-lineage-analysis/         # Dependency tracing & impact analysis
+│   ├── power-bi-model-design-review/      # Semantic model audit
+│   ├── power-bi-naming-conventions/       # Naming standards audit
+│   ├── power-bi-pbip-format/              # PBIP project structure reference
+│   ├── power-bi-pbir-format/              # PBIR report metadata reference
+│   ├── power-bi-performance-troubleshooting/ # Performance diagnosis
+│   ├── power-bi-report-design-consultation/  # Report design methodology
+│   ├── power-bi-tmdl-authoring/           # Advanced TMDL file authoring
 │   ├── markdown-converter/
 │   ├── markdown-to-html/
 │   └── markdown-to-word/
-├── prompts/             # 3 quick-invoke session management prompts (.prompt.md)
-│   ├── delfos-pbi-init.prompt.md
-│   ├── delfos-pbi-reconnect.prompt.md
-│   └── delfos-pbi-preflight-check.prompt.md
-├── hooks/               # PreToolUse safety gate for TMDL file edits
-│   ├── delfos-pbi-preflight-check.json
-│   └── scripts/delfos-check-pbi-tmdl.ps1
-├── memory.md            # Cross-session decision memory (append-only)
+├── prompts/             # 8 quick-invoke prompts (.prompt.md)
+│   ├── delfos-pbi-init.prompt.md              # Connect to PBI Desktop via MCP
+│   ├── delfos-pbi-reconnect.prompt.md         # Restore previous MCP connection
+│   ├── delfos-pbi-preflight-check.prompt.md   # Verify MCP connection status
+│   ├── delfos-pbi-audit-context.prompt.md     # Audit project configuration
+│   ├── delfos-pbi-quick-model-review.prompt.md    # Quick semantic model health check
+│   ├── delfos-pbi-quick-dax-review.prompt.md      # Quick DAX anti-pattern scan
+│   ├── delfos-pbi-quick-performance-check.prompt.md # Quick performance diagnostics
+│   └── delfos-pbi-security-audit.prompt.md    # RLS/OLS security audit
+├── hooks/               # Pre and PostToolUse safety gates
+│   ├── delfos-pbi-preflight-check.json        # PreToolUse: block risky TMDL edits
+│   ├── delfos-pbi-post-validation.json        # PostToolUse: validate JSON/TMDL after edits
+│   └── scripts/
+│       ├── delfos-check-pbi-tmdl.ps1          # Pre-flight gate script
+│       └── delfos-post-validate.ps1           # Post-edit validation script
+├── AGENT-TONE.md        # Consistent tone & behavior guidelines for all agents
+├── memory.md            # Cross-session decision memory (append-only, with template)
 └── bc-api-v2-catalog.md # Business Central API v2.0 entity reference
 .vscode/
-└── mcp.json             # MCP server configuration (Power BI Remote MCP)
+└── mcp.json             # MCP server configuration (Remote MCP + Microsoft Learn MCP)
 CHANGELOG.md
 CONTRIBUTING.md
 LICENSE
@@ -67,9 +82,10 @@ Tier 2 — DOMAIN EXPERTS (specialized execution)
 
 Tier 3 — ENABLERS (always-on & on-demand)
   ├── 6 Instruction Sets     → Auto-applied coding guidelines (via applyTo globs)
-  ├── 8+ Skills              → Prompt templates for specific analysis tasks
-  ├── 3 Prompts              → Session/MCP connection management
-  └── 1 Hook                 → Safety gate preventing direct TMDL file edits
+  ├── 14 Skills              → Prompt templates for specific analysis tasks
+  ├── 8 Prompts              → Session management + quick diagnostics
+  ├── 2 Hooks                → Pre and PostToolUse safety gates
+  └── 1 AGENT-TONE.md        → Consistent behavior guidelines for all agents
 ```
 
 ## File Naming Conventions

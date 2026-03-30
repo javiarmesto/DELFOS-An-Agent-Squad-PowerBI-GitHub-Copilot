@@ -1,6 +1,13 @@
 ---
 name: power-bi-performance-troubleshooting
-description: 'Systematic Power BI performance troubleshooting prompt for identifying, diagnosing, and resolving performance issues in Power BI models, reports, and queries.'
+description: >
+  Systematic Power BI performance troubleshooting prompt for identifying, diagnosing,
+  and resolving performance issues in Power BI models, reports, and queries.
+  USE WHEN: "report is slow", "model takes too long to load", "visual is laggy",
+  "query timeout", "refresh is slow", "capacity issues", "high memory usage",
+  "DirectQuery performance", "optimize report speed", "Performance Analyzer results",
+  "reduce model size", "too many visuals".
+  RELATED SKILLS: power-bi-dax-optimization, power-bi-model-design-review.
 ---
 
 # Power BI Performance Troubleshooting Guide

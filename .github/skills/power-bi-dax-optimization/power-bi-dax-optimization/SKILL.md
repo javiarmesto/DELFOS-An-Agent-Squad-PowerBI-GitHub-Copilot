@@ -1,6 +1,13 @@
 ---
 name: power-bi-dax-optimization
-description: 'Comprehensive Power BI DAX formula optimization prompt for improving performance, readability, and maintainability of DAX calculations.'
+description: >
+  Comprehensive Power BI DAX formula optimization prompt for improving performance,
+  readability, and maintainability of DAX calculations.
+  USE WHEN: "optimize this DAX", "my measure is slow", "review DAX performance",
+  "improve this calculation", "DAX best practices check", "refactor this measure",
+  "why is this DAX slow", "simplify this formula", "DAX anti-patterns",
+  "convert nested IF to SWITCH", "add variables to this measure".
+  RELATED SKILLS: power-bi-performance-troubleshooting, power-bi-model-design-review.
 ---
 
 # Power BI DAX Formula Optimizer
