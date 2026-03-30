@@ -11,31 +11,40 @@
 
 ```
 .github/
-├── agents/              # 6 AI agent mode definitions (.agent.md)
+├── agents/              # 7 AI agent mode definitions (.agent.md)
 │   ├── delfos-architect.agent.md          # Full-stack PBI architecture designer (orchestration)
 │   ├── delfos-lead-squad.agent.md         # Project orchestrator with HITL gates (orchestration)
 │   ├── power-bi-data-modeling-expert.agent.md   # Star schema & relationships
 │   ├── power-bi-dax-expert.agent.md             # DAX formulas & calculations
+│   ├── power-bi-pbip-validator.agent.md         # PBIP project validation
 │   ├── power-bi-performance-expert.agent.md     # Query optimization & monitoring
 │   └── power-bi-visualization-expert.agent.md   # Report design & UX
-├── instructions/        # 6 always-on coding guidelines (.instructions.md)
+├── instructions/        # 7 always-on coding guidelines (.instructions.md)
 │   ├── delfos-tmdl-file-editing.instructions.md
 │   ├── power-bi-custom-visuals-development.instructions.md
 │   ├── power-bi-data-modeling-best-practices.instructions.md
 │   ├── power-bi-dax-best-practices.instructions.md
 │   ├── power-bi-devops-alm-best-practices.instructions.md
+│   ├── power-bi-power-query-best-practices.instructions.md
 │   └── power-bi-security-rls-best-practices.instructions.md
-├── skills/              # 14 on-demand prompt templates (directory/SKILL.md)
+├── skills/              # 21 on-demand prompt templates (directory/SKILL.md)
 │   ├── bc-data-source-mapping/            # BC API → PBI model mapping
 │   ├── power-bi-dax-optimization/         # DAX formula analysis & optimization
 │   ├── power-bi-deneb-visuals/            # Deneb/Vega-Lite custom visuals
+│   ├── power-bi-fabric-cli/               # Fabric CLI remote operations
 │   ├── power-bi-lineage-analysis/         # Dependency tracing & impact analysis
 │   ├── power-bi-model-design-review/      # Semantic model audit
 │   ├── power-bi-naming-conventions/       # Naming standards audit
 │   ├── power-bi-pbip-format/              # PBIP project structure reference
 │   ├── power-bi-pbir-format/              # PBIR report metadata reference
 │   ├── power-bi-performance-troubleshooting/ # Performance diagnosis
+│   ├── power-bi-python-visuals/           # Python (matplotlib/seaborn) visuals
+│   ├── power-bi-r-visuals/                # R (ggplot2) visuals
 │   ├── power-bi-report-design-consultation/  # Report design methodology
+│   ├── power-bi-semantic-model-refresh/   # Refresh management & troubleshooting
+│   ├── power-bi-svg-visuals/              # SVG visuals via DAX measures
+│   ├── power-bi-tabular-editor-bpa/       # Best Practice Analyzer rules
+│   ├── power-bi-theme-json/               # Report theme JSON management
 │   ├── power-bi-tmdl-authoring/           # Advanced TMDL file authoring
 │   ├── markdown-converter/
 │   ├── markdown-to-html/
@@ -78,11 +87,12 @@ Tier 2 — DOMAIN EXPERTS (specialized execution)
   ├── Data Modeling Expert   → Star schema, relationships, SCD
   ├── DAX Expert             → Formulas, variables, time intelligence
   ├── Performance Expert     → Query optimization, monitoring
-  └── Visualization Expert   → Reports, accessibility, mobile
+  ├── Visualization Expert   → Reports, accessibility, mobile
+  └── PBIP Validator         → Project structure & file validation
 
 Tier 3 — ENABLERS (always-on & on-demand)
-  ├── 6 Instruction Sets     → Auto-applied coding guidelines (via applyTo globs)
-  ├── 14 Skills              → Prompt templates for specific analysis tasks
+  ├── 7 Instruction Sets     → Auto-applied coding guidelines (via applyTo globs)
+  ├── 21 Skills              → Prompt templates for specific analysis tasks
   ├── 8 Prompts              → Session management + quick diagnostics
   ├── 2 Hooks                → Pre and PostToolUse safety gates
   └── 1 AGENT-TONE.md        → Consistent behavior guidelines for all agents

@@ -1,6 +1,14 @@
 ---
 name: bc-data-source-mapping
-description: 'Map Power BI star schema designs to Business Central data sources. Analyzes a Delfos architecture document, matches tables against BC API v2.0 standard entities, identifies coverage gaps, and generates ALDC-compatible requirement specs for custom API Pages. Use when a Power BI project needs data from Business Central and you need to determine which APIs exist and which must be built.'
+description: >
+  Map Power BI star schema designs to Business Central data sources. Analyzes a
+  Delfos architecture document, matches tables against BC API v2.0 standard entities,
+  identifies coverage gaps, and generates ALDC-compatible requirement specs for custom
+  API Pages.
+  USE WHEN: "map to Business Central", "BC API mapping", "Business Central data source",
+  "BC connector", "which BC API covers this table", "ALDC spec", "custom API Page",
+  "BC OData endpoint", "Business Central integration".
+  RELATED SKILLS: power-bi-model-design-review, power-bi-lineage-analysis, power-bi-naming-conventions.
 ---
 
 # Skill: BC Data Source Mapping (Delfos → ALDC Bridge)
