@@ -1,6 +1,6 @@
 ---
 description: 'Comprehensive Power BI custom visuals development guide covering React, D3.js integration, TypeScript patterns, testing frameworks, and advanced visualization techniques.'
-applyTo: '**/*.{ts,tsx,js,jsx,json,less,css}'
+applyTo: '**/*.{ts,tsx,js,jsx,less,css}'
 ---
 
 # Power BI Custom Visuals Development Best Practices

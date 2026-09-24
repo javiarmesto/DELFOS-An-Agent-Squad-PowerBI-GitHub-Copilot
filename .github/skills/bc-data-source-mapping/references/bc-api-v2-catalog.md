@@ -376,5 +376,5 @@ Key rules for Power BI API Pages:
 
 ---
 
-*This catalog is part of the [Delfos Power BI Agentic Squad](../README.md).*
+*This catalog is part of the [Delfos Power BI Agentic Squad](https://github.com/javiarmesto/DELFOS-An-Agent-Squad-PowerBI-GitHub-Copilot).*
 *Maintained by Javier Armesto González — [TechSphere Dynamics](https://techspheredynamics.substack.com)*

@@ -1,5 +1,25 @@
 # Changelog
 
+## [Unreleased] — 1.2.0 candidate
+
+### Added
+- Native Claude Code DELFOS plugin and marketplace, generated from shared agents/skills.
+- Official powerbi-authoring integration using semantic-model-authoring and powerbi-report-cli.
+- Target-aware Desktop/PBIP/Fabric workflow, report generation and separate structural/rendered verification.
+- Node advisory hooks, collision-safe Copilot installer, limited file validator, automated checks and Windows/Linux CI.
+- Deterministic sales sample, per-host smoke procedure, dependency baseline and migration guide.
+
+### Fixed
+- README/configuration mismatch and mandatory local-write/remote-read split.
+- Stale MCP tool aliases and fixed Copilot model identifiers.
+- Unsupported general bans on typed M tables and direct TMDL file editing.
+- Nested skill folders, missing BC catalog reference and obsolete quickstart paths.
+- Automatic instruction scopes no longer match every Markdown/JSON file.
+
+### Validation
+- See docs/VALIDATION.md for actual checks. Live Copilot/Claude/Power BI Desktop acceptance remains separate; this is not a release announcement.
+
+
 All notable changes to the Delfos Power BI Agentic Squad will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),

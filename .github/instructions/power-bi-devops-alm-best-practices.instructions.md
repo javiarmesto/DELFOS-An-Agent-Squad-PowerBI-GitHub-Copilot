@@ -1,6 +1,6 @@
 ---
 description: 'Comprehensive guide for Power BI DevOps, Application Lifecycle Management (ALM), CI/CD pipelines, deployment automation, and version control best practices.'
-applyTo: '**/*.{yml,yaml,ps1,json,pbix,pbir}'
+applyTo: '**/*.{yml,yaml,ps1,pbip,pbir}'
 ---
 
 # Power BI DevOps and Application Lifecycle Management Best Practices

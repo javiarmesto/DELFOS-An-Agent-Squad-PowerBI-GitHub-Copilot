@@ -1,0 +1,14 @@
+{
+  "name": "delfos-collection",
+  "owner": {
+    "name": "Javier Armesto González"
+  },
+  "plugins": [
+    {
+      "name": "delfos",
+      "source": "./plugins/delfos",
+      "version": "1.2.0",
+      "description": "Power BI specialists for Claude Code; install powerbi-authoring separately."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 description: 'Comprehensive Power BI data modeling best practices based on Microsoft guidance for creating efficient, scalable, and maintainable semantic models using star schema principles.'
-applyTo: '**/*.{pbix,md,json,txt}'
+applyTo: '**/*.{tmdl,bim,pbip}'
 ---
 
 # Power BI Data Modeling Best Practices
