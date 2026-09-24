@@ -1,0 +1,5 @@
+OrderId,OrderDate,CustomerId,ProductId,Quantity,UnitPrice,UnitCost
+1001,2026-01-01,C1,P1,2,100,60
+1002,2026-01-01,C2,P2,1,150,90
+1003,2026-01-02,C1,P3,3,50,30
+1004,2026-01-02,C2,P1,1,100,60

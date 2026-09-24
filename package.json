@@ -1,0 +1,15 @@
+{
+  "name": "delfos-agent-squad",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Power BI authoring workflows for Copilot and Claude Code",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check && node scripts/check.mjs",
+    "test": "node --test tests/tooling.test.mjs",
+    "validate": "npm run check && npm test"
+  }
+}

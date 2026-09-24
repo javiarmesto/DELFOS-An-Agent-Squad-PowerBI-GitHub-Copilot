@@ -1,0 +1,15 @@
+{
+  "reviewedOn": "2026-09-24",
+  "powerbiAuthoring": {
+    "repository": "https://github.com/microsoft/skills-for-fabric",
+    "reviewedCommit": "65bfb5eb2c488cd03183df88f76ac3de65dcb910",
+    "reviewedVersion": "0.3.17",
+    "plugin": "powerbi-authoring@fabric-collection",
+    "skills": [
+      "semantic-model-authoring",
+      "powerbi-report-cli"
+    ],
+    "mcpRegistrationOwner": "official plugin",
+    "mcpVersionPolicy": "Upstream manifest uses @latest; record resolved MCP and CLI versions during each smoke test. This is a reviewed baseline, not a dependency lock or runtime certification."
+  }
+}

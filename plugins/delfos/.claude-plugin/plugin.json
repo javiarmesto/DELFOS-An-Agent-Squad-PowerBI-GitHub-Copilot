@@ -1,0 +1,10 @@
+{
+  "name": "delfos",
+  "version": "1.2.0",
+  "description": "Power BI specialist agents and verified authoring workflows. Requires the Microsoft powerbi-authoring plugin for live tools.",
+  "author": {
+    "name": "Javier Armesto González"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/javiarmesto/DELFOS-An-Agent-Squad-PowerBI-GitHub-Copilot"
+}

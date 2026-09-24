@@ -1,0 +1,32 @@
+[
+  {
+    "id": "delfos-architect",
+    "name": "Delfos Architect",
+    "description": "Full-stack Power BI architecture and design specialist. Designs semantic models, DAX strategies, report layouts, security models, and DevOps pipelines as a unified architecture. Produces architecture documents that guide all downstream Delfos experts. USE FOR: strategic design decisions, new project architecture, major refactoring, migration planning, model + report + security + DevOps unified design. DO NOT USE FOR: single-domain questions (use the specialist expert directly), implementation work (use Lead Squad for orchestrated execution)."
+  },
+  {
+    "id": "delfos-lead-squad",
+    "name": "Delfos Lead Squad",
+    "description": "Orchestrates multi-phase Power BI development workflows across specialist agents. Decomposes high-level requests into sequenced phases, delegates to Delfos experts, enforces HITL gates between phases, tracks progress with lightweight checkpoints, and produces a final summary document. USE FOR: multi-phase Power BI projects (model design + DAX + reports + deployment), full development cycles, migration projects, performance optimization campaigns, any request that spans multiple Delfos experts. DO NOT USE FOR: single-domain questions \u2014 delegate directly to the specialist expert."
+  },
+  {
+    "id": "power-bi-data-modeling-expert",
+    "name": "Power BI Data Modeling Expert Mode",
+    "description": "Expert Power BI data modeling guidance using star schema principles, relationship design, and Microsoft best practices for optimal model performance and usability."
+  },
+  {
+    "id": "power-bi-dax-expert",
+    "name": "Power BI DAX Expert Mode",
+    "description": "Expert Power BI DAX guidance using Microsoft best practices for performance, readability, and maintainability of DAX formulas and calculations."
+  },
+  {
+    "id": "power-bi-performance-expert",
+    "name": "Power BI Performance Expert Mode",
+    "description": "Expert Power BI performance optimization guidance for troubleshooting, monitoring, and improving the performance of Power BI models, reports, and queries."
+  },
+  {
+    "id": "power-bi-visualization-expert",
+    "name": "Power BI Visualization Expert Mode",
+    "description": "Expert Power BI report design and visualization guidance using Microsoft best practices for creating effective, performant, and user-friendly reports and dashboards."
+  }
+]
