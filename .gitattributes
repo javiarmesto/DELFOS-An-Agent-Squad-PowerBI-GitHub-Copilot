@@ -1,0 +1,5 @@
+# Deterministic generated output and hook scripts on Windows and Linux.
+* text=auto eol=lf
+*.docx binary
+*.png binary
+*.jpg binary
