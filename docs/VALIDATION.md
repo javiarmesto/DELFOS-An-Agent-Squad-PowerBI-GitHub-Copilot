@@ -7,7 +7,7 @@ Candidate: DELFOS 1.2.0. Status is per capability, not a blanket compatibility c
 | Deterministic generated distributions | PASSED | 44 generated files checked by npm run check on Linux |
 | Package metadata and relative references | PASSED | npm run check; YAML frontmatter parsed separately |
 | Hook, file checker, safe installer and sample calculations | PASSED | 15 Node tests on Linux; includes packaged scripts outside checkout |
-| Windows/Linux CI | NOT RUN | Workflow added; GitHub execution pending |
+| Windows/Linux CI | PASSED | Both jobs passed on implementation commit `3ca8ec3`: [run 36024229935](https://github.com/javiarmesto/DELFOS-An-Agent-Squad-PowerBI-GitHub-Copilot/actions/runs/36024229935) |
 | Claude native plugin validator and host discovery | NOT RUN | Claude CLI unavailable in implementation environment |
 | VS Code/Copilot host discovery and hooks | NOT RUN | No interactive VS Code host in implementation environment |
 | Actual MCP connection and same-model DAX | NOT RUN | No Power BI runtime connected |
